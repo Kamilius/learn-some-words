@@ -1,0 +1,11 @@
+.word {
+  cursor: pointer;
+}
+
+.word + .word {
+  margin-left: 0.15em;
+}
+
+.word:hover {
+  text-decoration: underline;
+}

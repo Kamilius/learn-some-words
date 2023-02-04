@@ -1,0 +1,41 @@
+---
+const { word } = Astro.props;
+---
+
+<span class="word">{word}</span>
+
+<script>
+  (function() {
+    const T2S = window.speechSynthesis || speechSynthesis;
+    const $element = document.querySelector('.word');
+    const word: string = $element.textContent;
+
+    const clickHandler = (e) => {
+      e.preventDefault();
+
+      if("speechSynthesis" in window || speechSynthesis) {
+        const utterance = new SpeechSynthesisUtterance(word);
+        utterance.lang = 'en-US';
+        utterance.rate = 0.75;
+        utterance.pitch = 1.0;
+        utterance.volume = 1.0;
+        T2S.speak(utterance);
+      }
+    };
+    $element.addEventListener('click', clickHandler);
+
+    window.onbeforeunload = function(){
+      T2S.cancel(); // To Stop Speaking If the Page Is Closed.
+    }
+  })();
+</script>
+
+<style>
+  .word {
+    cursor: pointer;
+  }
+
+  .word:hover {
+    text-decoration: underline;
+  }
+</style>

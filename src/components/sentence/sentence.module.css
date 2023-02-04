@@ -1,0 +1,21 @@
+.sentence {
+  cursor: pointer;
+  position: relative;
+}
+
+.sentence:hover {
+  font-weight: bolder;
+}
+
+.sentence:hover .readSentence {
+  display: block;
+}
+
+.readSentence {
+  content: "🔊";
+  display: none;
+  position: absolute;
+  top: -1rem;
+  left: 50%;
+  transform-translate-Y: (-50%);
+}
